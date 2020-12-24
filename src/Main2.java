@@ -22,31 +22,26 @@ import javax.naming.NamingException;
 
 public class Main2 {
    public static void main(String[] args) throws JMSException, IOException, NamingException {
-        // variables that we need for our chat room
-            Connection con = new Connection();
-        Connection.TopicConnect tc= con.new TopicConnect("MyTopic", "ConnectionFactory", "Slum");
-       try {
- if (args.length!=3)
- System.out.println("Factory, Topic, or username missing");
- // args[0]=topicFactory; args[1]=topicName; args[2]=username
- // Read from command line
- BufferedReader commandLine = new
- java.io.BufferedReader(new InputStreamReader(System.in));
- // Loop until the word "exit" is typed
- while(true) {
- String s = commandLine.readLine();
- if (s.equalsIgnoreCase("exit")){
- tc.CloseConnect();
- System.exit(0);
- } else
- tc.writeMessage(s);
- }
- } catch (Exception e) { e.printStackTrace(); }
-       
-     
-    }
 
-   
-    
+    Connection con = new Connection();
+    Connection.TopicConnect tc= con.new TopicConnect("MyTopic", "ConnectionFactory", "Slum");
+       try {
+    	   if (args.length!=3)
+    		   System.out.println("Ready to send message!");
+
+ // Read from command line
+    	   BufferedReader commandLine = new
+		   java.io.BufferedReader(new InputStreamReader(System.in));
+ // Loop until the word "exit" is typed
+    	   while(true) {
+    		   String s = commandLine.readLine();
+    		   if (s.equalsIgnoreCase("exit")){
+    			   tc.CloseConnect();
+    			   System.exit(0);
+    		   } else
+    			   tc.writeMessage(s);
+    	   }
+       } catch (Exception e) { e.printStackTrace(); }
+    } 
 }
         
